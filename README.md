@@ -41,8 +41,6 @@ Versus answers that in a structured way, using **local docs as grounding** so th
 npm install -g @ramusriram/versus
 ```
 
-> Note: this command will work after the first npm publish.
-
 Then run:
 
 ```bash
