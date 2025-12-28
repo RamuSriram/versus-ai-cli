@@ -1,0 +1,40 @@
+{
+  "name": "versus-ai-cli",
+  "version": "0.1.0",
+  "description": "AI-powered CLI to compare two Linux commands or concepts, grounded in local docs (man, --help, info).",
+  "type": "module",
+  "bin": {
+    "versus": "./bin/versus.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node ./bin/versus.js --help",
+    "test": "node --test",
+    "prepublishOnly": "node --test"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "openai": "^6.8.0",
+    "picocolors": "^1.1.0"
+  },
+  "keywords": [
+    "cli",
+    "linux",
+    "man",
+    "ai",
+    "llm",
+    "compare",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "files": [
+    "bin",
+    "src",
+    "test",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
+}
