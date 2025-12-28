@@ -1,10 +1,10 @@
 {
-  "name": "versus-ai-cli",
+  "name": "@ramusriram/versus",
   "version": "0.1.0",
   "description": "AI-powered CLI to compare two Linux commands or concepts, grounded in local docs (man, --help, info).",
   "type": "module",
   "bin": {
-    "versus": "./bin/versus.js"
+    "versus": "bin/versus.js"
   },
   "engines": {
     "node": ">=20"
