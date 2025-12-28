@@ -1,6 +1,6 @@
 {
   "name": "@ramusriram/versus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AI-powered CLI to compare two Linux commands or concepts, grounded in local docs (man, --help, info).",
   "type": "module",
   "bin": {
