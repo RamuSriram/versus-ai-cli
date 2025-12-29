@@ -28,7 +28,7 @@ async function readCache() {
       const backup = file + ".corrupt";
       try {
         await fs.rename(file, backup);
-      } catch {}
+      } catch { }
       return { version: 1, entries: {} };
     }
     throw err;

@@ -20,18 +20,22 @@ function computeCacheKey({ left, right, options, leftDocs, rightDocs }) {
   return sha256(JSON.stringify(payload));
 }
 
-export async function buildComparisonPrompt(left, right, options) {
+export async function buildComparisonPrompt(left, right, options, onStatus) {
   const includeDocs = options.includeDocs !== false;
+  const status = typeof onStatus === "function" ? onStatus : () => { };
 
-  const [leftInfo, rightInfo] = includeDocs
-    ? await Promise.all([
-        collectDocs(left, { maxChars: options.maxDocChars, debug: options.debug }),
-        collectDocs(right, { maxChars: options.maxDocChars, debug: options.debug }),
-      ])
-    : [
-        { docs: "", sources: [], skipped: "docs disabled" },
-        { docs: "", sources: [], skipped: "docs disabled" },
-      ];
+  let leftInfo, rightInfo;
+
+  if (includeDocs) {
+    status(`Reading local docs for ${left}`);
+    leftInfo = await collectDocs(left, { maxChars: options.maxDocChars, debug: options.debug });
+
+    status(`Reading local docs for ${right}`);
+    rightInfo = await collectDocs(right, { maxChars: options.maxDocChars, debug: options.debug });
+  } else {
+    leftInfo = { docs: "", sources: [], skipped: "docs disabled" };
+    rightInfo = { docs: "", sources: [], skipped: "docs disabled" };
+  }
 
   const leftDocs = leftInfo.docs || "";
   const rightDocs = rightInfo.docs || "";
@@ -48,13 +52,15 @@ export async function buildComparisonPrompt(left, right, options) {
   return { prompt, leftInfo, rightInfo, leftDocs, rightDocs };
 }
 
-export async function runComparison(left, right, options) {
+export async function runComparison(left, right, options, onStatus) {
   const t0 = hrtimeMs();
+  const status = typeof onStatus === "function" ? onStatus : () => { };
 
   const { prompt, leftInfo, rightInfo, leftDocs, rightDocs } = await buildComparisonPrompt(
     left,
     right,
-    options
+    options,
+    onStatus
   );
 
   const key = computeCacheKey({ left, right, options, leftDocs, rightDocs });
@@ -91,6 +97,10 @@ export async function runComparison(left, right, options) {
       };
     }
   }
+
+  // Show which backend we're querying
+  const backendName = options.backend === "auto" ? "LLM" : options.backend;
+  status(`Querying ${backendName}`);
 
   const tLLM0 = hrtimeMs();
   const gen = await generateText({

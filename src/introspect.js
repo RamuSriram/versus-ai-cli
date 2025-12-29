@@ -30,13 +30,13 @@ function runCommand(cmd, args, { timeoutMs = DEFAULT_TIMEOUT_MS } = {}) {
     const killTimer =
       timeoutMs && timeoutMs > 0
         ? setTimeout(() => {
-            if (done) return;
-            done = true;
-            try {
-              child.kill("SIGKILL");
-            } catch {}
-            resolve({ ok: false, stdout, stderr, timedOut: true });
-          }, timeoutMs)
+          if (done) return;
+          done = true;
+          try {
+            child.kill("SIGKILL");
+          } catch { }
+          resolve({ ok: false, stdout, stderr, timedOut: true });
+        }, timeoutMs)
         : null;
 
     child.stdout.on("data", (d) => (stdout += d.toString("utf8")));

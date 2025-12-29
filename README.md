@@ -1,14 +1,19 @@
 # Versus CLI (`versus`)
 
-Compare two Linux commands or concepts (A vs B) from inside your terminal, grounded in your machine’s local documentation (man pages, `--help`, `info`) and summarized by an LLM backend.
+[![npm version](https://img.shields.io/npm/v/@ramusriram/versus)](https://www.npmjs.com/package/@ramusriram/versus)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/node/v/@ramusriram/versus)](https://nodejs.org/)
+[![CI](https://github.com/RamuSriram/versus-ai-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/RamuSriram/versus-ai-cli/actions/workflows/ci.yml)
 
-![CI](https://github.com/RamuSriram/versus-ai-cli/actions/workflows/ci.yml/badge.svg)
+Compare two Linux commands or concepts (A vs B) from inside your terminal, grounded in your machine’s local documentation (man pages, `--help`, `info`) and summarized by an LLM backend.
 
 ## Demo
 
+![versus demo](.github/assets/demo.gif)
+
 ```bash
-versus nano vim
-versus curl wget --backend gemini
+versus curl wget
+versus nano vim --backend gemini
 versus "git pull" "git fetch" --level beginner
 ```
 

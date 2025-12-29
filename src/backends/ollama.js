@@ -1,3 +1,5 @@
+import { DEFAULT_MODELS } from "./defaults.js";
+
 export async function generateOllama({ prompt, model, baseUrl }) {
   const urlBase = baseUrl || process.env.OLLAMA_BASE_URL || "http://localhost:11434";
   const url = `${urlBase.replace(/\/$/, "")}/api/generate`;
@@ -6,7 +8,7 @@ export async function generateOllama({ prompt, model, baseUrl }) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      model: model || "llama3.2",
+      model: model || DEFAULT_MODELS.ollama,
       prompt,
       stream: false,
     }),

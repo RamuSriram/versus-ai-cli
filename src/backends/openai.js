@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { DEFAULT_MODELS } from "./defaults.js";
 
 export async function generateOpenAI({ prompt, model, apiKey, baseUrl }) {
   const key = apiKey || process.env.OPENAI_API_KEY;
@@ -15,7 +16,7 @@ export async function generateOpenAI({ prompt, model, apiKey, baseUrl }) {
 
   try {
     const response = await client.responses.create({
-      model: model || "gpt-5.2",
+      model: model || DEFAULT_MODELS.openai,
       input: prompt,
     });
 

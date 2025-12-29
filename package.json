@@ -1,7 +1,16 @@
 {
   "name": "@ramusriram/versus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "AI-powered CLI to compare two Linux commands or concepts, grounded in local docs (man, --help, info).",
+  "author": "Ramu Sriram",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RamuSriram/versus-ai-cli.git"
+  },
+  "homepage": "https://github.com/RamuSriram/versus-ai-cli#readme",
+  "bugs": {
+    "url": "https://github.com/RamuSriram/versus-ai-cli/issues"
+  },
   "type": "module",
   "bin": {
     "versus": "bin/versus.js"

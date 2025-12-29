@@ -263,7 +263,12 @@ export async function main(argv) {
 
         if (shouldShowSpinner(options)) spinner = createSpinner({ text: "Comparing" });
 
-        const result = await runComparison(left, right, options);
+        // Status callback updates spinner text for real-time progress
+        const onStatus = (msg) => {
+          if (spinner) spinner.update(msg);
+        };
+
+        const result = await runComparison(left, right, options, onStatus);
 
         spinner?.stop();
 

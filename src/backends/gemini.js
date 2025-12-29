@@ -1,3 +1,5 @@
+import { DEFAULT_MODELS } from "./defaults.js";
+
 export async function generateGemini({ prompt, model, apiKey }) {
   const key = apiKey || process.env.GEMINI_API_KEY;
   if (!key) {
@@ -6,7 +8,7 @@ export async function generateGemini({ prompt, model, apiKey }) {
     throw err;
   }
 
-  const m = model || "gemini-2.5-flash";
+  const m = model || DEFAULT_MODELS.gemini;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`;
 
   let res;

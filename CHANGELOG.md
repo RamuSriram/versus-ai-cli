@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.2
+
+- Added demo GIF to README (cropped for cleaner display).
+- **UX improvement:** Added real-time progress status messages ("Reading local docs for curl...", "Querying gemini...") during comparisons.
+- Centralized default model names in `src/backends/defaults.js` for easier maintenance.
+
+## 0.1.1
+
+- Published to npm as `@ramusriram/versus`.
+- Added npm version, license, and Node.js version badges to README.
+- Added package metadata: `author`, `repository`, `homepage`, `bugs` fields.
+- Added CLI integration test with mock backend.
+
 ## 0.1.0
 
 Initial public release.
